@@ -1,3 +1,11 @@
 h3 {
   color: aquamarine
 }
+
+app-successalert {
+  color: green
+}
+
+app-warning {
+    color: red
+}
