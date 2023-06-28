@@ -1,0 +1,20 @@
+<p>Welcome to databinding-exercise</p>
+<p>
+  1. Add a Input field which updates a property (username) via Two-Way-Binding<br/>
+  2. Output the username property via String Interpolation (in a paragraph below the input)<br/>
+  3. Add a button which may only be clicked if the usemame is NOT an empty string<br />
+  4. Upon clicking the button, the username should be reset to an empty string
+</p>
+
+<input type="text"
+       class="form-control"
+       [(ngModel)]="username">
+<p>{{ username }}</p>
+<button class="btn btn-primary"
+        [disabled]="username.length == 0"
+        (click)="onResetUserName()">
+  Reset User
+</button>
+
+
+
