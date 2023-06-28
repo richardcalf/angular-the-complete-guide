@@ -8,5 +8,4 @@
   [disabled]="!allowNewServer || (serverName.length == 0)"
   (click)="onCreateServer()">Add Server</button>
 <p *ngIf="serverCreated">Server {{ this.serverName }} was created.</p>
-<app-server></app-server>
-<app-server></app-server>
+<app-server *ngFor="let server of servers"></app-server>
