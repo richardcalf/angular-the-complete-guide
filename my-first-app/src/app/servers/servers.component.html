@@ -5,8 +5,11 @@
   [(ngModel)]="serverName" >
 <button
   class="btn btn-primary"
-  [disabled]="!allowNewServer"
+  [disabled]="!allowNewServer || (serverName.length == 0)"
   (click)="onCreateServer()">Add Server</button>
-<p>{{ serverCreationStatus }}</p>
+<p *ngIf="serverCreated; else noServer">Server {{ this.serverName }} was created.</p>
+<ng-template #noServer>
+  <p>No server was created.</p>
+</ng-template>
 <app-server></app-server>
 <app-server></app-server>
