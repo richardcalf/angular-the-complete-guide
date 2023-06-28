@@ -9,6 +9,7 @@ import { ServersComponent } from './servers/servers.component';
 import { WarningAlertComponent } from './warningalert/warningalert.component';
 import { SuccessAlertComponent } from './successalert/successalert.component';
 import { ExerciseDatabindingComponent } from './exercise-databinding/databinding-exercise.component';
+import { ExerciseDirectivesComponent } from './exercise-directives/exercise-directives.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ExerciseDatabindingComponent } from './exercise-databinding/databinding
     ServersComponent,
     WarningAlertComponent,
     SuccessAlertComponent,
-    ExerciseDatabindingComponent
+    ExerciseDatabindingComponent,
+    ExerciseDirectivesComponent
   ],
   imports: [
     BrowserModule,
