@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './databinding-exercise.component.html',
   styleUrls: ['./databinding-exercise.component.css']
 })
-export class DatabindingExerciseComponent {
+export class ExerciseDatabindingComponent {
   username = "";
 
   onResetUserName() {
