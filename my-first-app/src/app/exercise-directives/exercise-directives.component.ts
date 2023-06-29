@@ -15,4 +15,5 @@ export class ExerciseDirectivesComponent {
     this.buttonClicks++;
     this.clicksArray.push(this.buttonClicks);
   }
+
 }

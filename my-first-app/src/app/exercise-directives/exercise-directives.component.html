@@ -5,7 +5,10 @@
 <p *ngIf="displayParagraph">
   I drive the E-Revo 2.0 to relax and enjoy life.
 </p>
-<!--<p *ngFor="let theClick of clicksArray">{{buttonClicks}}</p>-->
 <ul>
-  <li *ngFor="let item of clicksArray">{{item}}</li>
+  <li
+      *ngFor="let item of clicksArray"
+      [ngStyle]="{backgroundColor: item >= 5 ? 'blue' : 'transparent'}"
+      [ngClass]="{'white-text': item >= 5}"
+      >{{item}}</li>
 </ul>

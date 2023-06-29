@@ -12,4 +12,7 @@
 <app-server></app-server>
 
 
-<p *ngFor="let theClick of clicksArray"></p>
+<p *ngIf="serverCreated; else noServer">Server {{ this.serverName }} was created.</p>
+<ng-template #noServer>
+  <p>No server was created.</p>
+</ng-template>
