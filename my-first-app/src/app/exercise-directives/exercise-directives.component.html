@@ -7,8 +7,8 @@
 </p>
 <ul>
   <li
-      *ngFor="let item of clicksArray"
-      [ngStyle]="{backgroundColor: item >= 5 ? 'blue' : 'transparent'}"
-      [ngClass]="{'white-text': item >= 5}"
+      *ngFor="let item of log; let i = index"
+      [ngStyle]="{backgroundColor: i >= 4 ? 'blue' : 'transparent'}"
+      [ngClass]="{'white-text': i >= 4}"
       >{{item}}</li>
 </ul>

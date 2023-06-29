@@ -7,13 +7,11 @@ import { Component } from '@angular/core';
 })
 export class ExerciseDirectivesComponent {
   displayParagraph = false;
-  buttonClicks = 0;
-  clicksArray = [];
+  log = [];
 
   onToggleDisplay() {
     this.displayParagraph = !(this.displayParagraph);
-    this.buttonClicks++;
-    this.clicksArray.push(this.buttonClicks);
+    this.log.push(new Date());
   }
 
 }
