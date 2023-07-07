@@ -1,3 +1,9 @@
-dl node.js from https://nodejs.org/en (Current button)
+1. dl node.js from https://nodejs.org/en (Current button)
 
 ] npm install -g @angular/cli@latest
+
+2. create an angular project
+] ng new my-awesome-app --no-strict --skip-tests
+
+3. Once inside your project folder, install bootstrap locally inside your angular project folder..
+] npm install --save bootstrap@3
