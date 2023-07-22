@@ -1,3 +1,6 @@
+-----------------------------------------------------------------------
+------------------------Setting up-------------------------------------
+-----------------------------------------------------------------------
 1. dl node.js from https://nodejs.org/en (Current button)
 
 ] npm install -g @angular/cli@latest
@@ -7,3 +10,8 @@
 
 3. Once inside your project folder, install bootstrap locally inside your angular project folder..
 ] npm install --save bootstrap@3
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+
+https://angular.io/guide/lifecycle-hooks
