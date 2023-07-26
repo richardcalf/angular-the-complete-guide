@@ -1,21 +1,22 @@
 <div class="container">
-  <app-cockpit 
-  (serverCreated)="onServerAdded($event)"
-  (blueprintCreated)="onBlueprintAdded($event)"
-  ></app-cockpit>
   <hr>
   <div class="row">
     <div class="col-xs-12">
-      <button class="btn btn-primary" (click)="onChangeFirst()">Change first Element</button>
-      <button class="btn btn-danger" (click)="onDestroyFirst()">Destroy first Element</button>
-      <app-server-element 
-      *ngFor="let serverElement of serverElements"
-      [name]="serverElement.name">
-      <p #contentParagraph>
-        <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
-        <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
-      </p>
-    </app-server-element>
+      <app-gamecontrol
+      (myTickEvent)="onTickEvent($event)"
+      ></app-gamecontrol>
+      <div class="row" *ngFor="let item of listElements" >
+        <app-odd *ngIf="item.name === 'oddball'" >
+        </app-odd>
+      </div>
+      <div class="row" *ngFor="let item of listElements">
+        <app-even>
+          <p #contentParagraph>
+            <strong *ngIf="item.name === 'even'" style="color: green">{{ item.tick }} {{item.name}}</strong>
+            <strong *ngIf="item.name === 'odd'" style="color: red">{{ item.tick }}  {{item.name}}</strong>
+          </p>
+        </app-even>
+      </div>
     </div>
   </div>
 </div>

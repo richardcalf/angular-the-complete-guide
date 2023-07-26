@@ -6,30 +6,40 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  serverElements = [{type: 'server', name: 'Testserver', content: 'Some dummy data content here'}];
-
-  onServerAdded(serverData: {serverName: string, serverContent: string}) {
-    this.serverElements.push({
-      type: 'server',
-      name: serverData.serverName,
-      content: serverData.serverContent
+  //serverElements = [{type: 'server', name: 'Testserver', content: 'Some dummy data content here'}];
+  listElements = [];
+  
+  onTickEvent(tickData: {counter: number, type: string} ) {
+    console.log('tick Data:'+ tickData.counter+' '+tickData.type);
+      this.listElements.push({
+      tick: tickData.counter,
+      name: tickData.type
     });
+  
   }
 
-  onBlueprintAdded(blueprintData: {serverName: string, serverContent: string}) {
-    this.serverElements.push({
-      type: 'blueprint',
-      name: blueprintData.serverName,
-      content: blueprintData.serverContent
-    });
-  }
+  // onServerAdded(serverData: {serverName: string, serverContent: string}) {
+  //   this.serverElements.push({
+  //     type: 'server',
+  //     name: serverData.serverName,
+  //     content: serverData.serverContent
+  //   });
+  // }
 
-  onChangeFirst() {
-    this.serverElements[0].name = 'Changed!';
-  }
+  // onBlueprintAdded(blueprintData: {serverName: string, serverContent: string}) {
+  //   this.serverElements.push({
+  //     type: 'blueprint',
+  //     name: blueprintData.serverName,
+  //     content: blueprintData.serverContent
+  //   });
+  // }
 
-  onDestroyFirst() {
-    this.serverElements.splice(0, 1);
-  }
+  // onChangeFirst() {
+  //   this.serverElements[0].name = 'Changed!';
+  // }
+
+  // onDestroyFirst() {
+  //   this.serverElements.splice(0, 1);
+  // }
 
 }

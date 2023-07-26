@@ -7,6 +7,7 @@
 
 2. create an angular project
 ] ng new my-awesome-app --no-strict --skip-tests
+] ng generate component MyNewFeature --skipTests
 
 3. Once inside your project folder, install bootstrap locally inside your angular project folder..
 ] npm install --save bootstrap@3
