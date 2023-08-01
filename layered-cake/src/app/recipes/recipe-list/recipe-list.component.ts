@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Recipe } from '../recipe.model';
 
 @Component({
@@ -13,4 +13,11 @@ export class RecipeListComponent {
     new Recipe('Chorizo Bake Recipe','Enjoy the Chorizo Bake',
     'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/gnocchi-1d16725.jpg')
   ];
+  @Output() recipeListItemClicked = new EventEmitter<Recipe>();
+
+
+  onRecipeItemClicked(recipe: Recipe) {
+    console.log('onRecipeItemClicked '+recipe.name);
+    this.recipeListItemClicked.emit(recipe);
+  }  
 }
