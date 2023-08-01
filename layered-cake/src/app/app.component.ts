@@ -9,7 +9,6 @@ export class AppComponent {
    menu: number = -1;
 
    onNavigate(menu: number) {
-    console.log(menu);
     this.menu = menu;
   }
 }
