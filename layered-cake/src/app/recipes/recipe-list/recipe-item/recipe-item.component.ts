@@ -8,10 +8,10 @@ import { Recipe } from '../../recipe.model';
 })
 export class RecipeItemComponent {
   @Input() recipe: Recipe;
-  @Output() recipeItemClicked = new EventEmitter<Recipe>();
+  @Output() recipeItemClicked = new EventEmitter<void>();
 
   recipeClicked() {
-    this.recipeItemClicked.emit(this.recipe);
+    this.recipeItemClicked.emit();
   }
 
 }

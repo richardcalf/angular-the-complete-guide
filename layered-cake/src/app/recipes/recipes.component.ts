@@ -7,11 +7,11 @@ import { Recipe } from './recipe.model';
   styleUrls: ['./recipes.component.css']
 })
 export class RecipesComponent {
-    recipe: Recipe;
+    selectedRecipe: Recipe;
 
-  oneOfTheItemsInMyListWasClicked(recipe: Recipe) {
-    console.log('oneOfTheItemsInMyListWasClicked ' + recipe.name);
-    this.recipe = recipe;
-  }
+  //oneOfTheItemsInMyListWasClicked(recipe: Recipe) {
+  //  console.log('oneOfTheItemsInMyListWasClicked ' + recipe.name);
+  //  this.selectedRecipe = recipe;
+  //}
 
 }
