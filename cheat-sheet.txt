@@ -34,5 +34,30 @@ export class DropdownDirective {
   constructor(private elRef: ElementRef) {}
 }
 -----------------------------------------------------------------------
+-------------Alternative Injection Syntax------------------------------
+-----------------------------------------------------------------------
+Instead of injecting LoggingService like this:
+
+@Component(...)
+export class AccountComponent {
+  // @Input() & @Output() code as shown in the previous lecture
+ 
+  constructor(private loggingService: LoggingService) {}
+}
+you could inject it like this, by using the inject() function:
+
+import { Component, Input, Output, inject } from '@angular/core'; // <- Add inject import
+ 
+@Component(...)
+export class AccountComponent {
+  // @Input() & @Output() code as shown in the previous lecture
+  private loggingService?: LoggingService; // <- must be added
+ 
+  constructor() {
+    this.loggingService = inject(LoggingService);
+  }
+}
+It's totally up to you, which approach you prefer. In this course (and, as mentioned, in most projects), we'll use the constructor approach.
+-----------------------------------------------------------------------
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
