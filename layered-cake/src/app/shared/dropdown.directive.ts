@@ -1,20 +1,12 @@
-import { Directive, Input, HostBinding, HostListener, Renderer2, ElementRef } from "@angular/core";
+import { Directive, HostBinding, HostListener } from "@angular/core";
 
 @Directive({
     selector: '[appDropdown]'
 })
 export class DropdownDirective {
-     menuClosed: boolean = true;
-
-     constructor(private elRef: ElementRef, private renderer: Renderer2)  {
-     }
+     @HostBinding('class.open') menuOpen: boolean = false;
      
-     @HostListener('click') clicked(eventData: Event) {
-        if(this.menuClosed) {
-            this.renderer.addClass(this.elRef.nativeElement,'open');
-        } else {
-            this.renderer.removeClass(this.elRef.nativeElement,'open');
-        }
-        this.menuClosed = !this.menuClosed;
+     @HostListener('click') toggleMenu() {
+        this.menuOpen = !this.menuOpen;
      }
 }
