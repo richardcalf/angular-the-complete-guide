@@ -3,9 +3,9 @@ import { Ingredient } from "../shared/ingredient.model";
 
 export class ShoppingListService {
     private ingredients: Ingredient[] = [
-        new Ingredient('Apples', 5),
-        new Ingredient('Tomatoes', 10),
-        new Ingredient('Pears', 3)
+        new Ingredient('Tamiya Wheel Hubs', 4),
+        new Ingredient('Kyosho Front Drive Shaft', 2),
+        new Ingredient('Kyosho Sway Bars', 3)
       ];
 
       ingredientsChanged = new EventEmitter<Ingredient[]>();

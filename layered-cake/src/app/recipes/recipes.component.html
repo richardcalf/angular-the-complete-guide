@@ -1,4 +1,4 @@
-<div class="ro">
+<div class="row">
     <div class="col-md-5">
       <app-recipe-list></app-recipe-list>
     </div>
@@ -7,7 +7,7 @@
         *ngIf="selectedRecipe; else infoText"
        [recipe]="selectedRecipe" ></app-recipe-detail>
       <ng-template #infoText>
-        <p>Please select a Recipe</p>
+        <p>Please select an RC car build kit</p>
       </ng-template>
     </div>
 </div>

@@ -6,19 +6,19 @@ export class RecipeService {
   recipeSelected = new EventEmitter<Recipe>();
 
   private recipes: Recipe[] = [
-    new Recipe('Goulash Recipe', 
-               'Enjoy the Goulash Stew',
-               'https://www.allrecipes.com/thmb/Q9CsPT8f6h5UydohsA5VILBFlrQ=/1500x750/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/2400-240708-broccoli-and-chicken-stir-fry-3x4-186-b7f290a400134ae9910f2e67ff50d9f2.jpg',
+    new Recipe('Tamiya Monster Beetle!', 
+               'Build kit for the timeless Monster Beetle',
+               'https://i.ytimg.com/vi/1DFhzJhrLzY/maxresdefault.jpg',
                [ 
-                 new Ingredient('Chicken hunks',45), 
-                 new Ingredient('Broccoli', 71) 
+                 new Ingredient('Tamiya Shock Towers',4), 
+                 new Ingredient('Tamiya Bush Bearings', 3) 
                ]),
-    new Recipe('Chorizo Bake Recipe', 
-               'Enjoy the Chorizo Bake',
-               'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/gnocchi-1d16725.jpg',
+    new Recipe('Kyosho Inferno', 
+               'Master build for the Kyosho Inferno!',
+               'https://rc.kyosho.com/media/wysiwyg/kyosho/sp_page/inferno_neo30/action01.jpg',
                [ 
-                 new Ingredient('Corn',12),
-                 new Ingredient('Sauce',100) 
+                 new Ingredient('Kyosho Turn Buckles',12),
+                 new Ingredient('Kyosho Oil Shocks',4) 
                ])
   ];
 
