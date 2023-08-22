@@ -14,6 +14,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './auth.service';
 import { AuthGaurd } from './auth-gaurd.service';
+import { CanDeactivateGaurd } from './servers/edit-server/can-deactivate-gaurd.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { AuthGaurd } from './auth-gaurd.service';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [ServersService, AuthService, AuthGaurd],
+  providers: [ServersService, AuthService, AuthGaurd, CanDeactivateGaurd],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

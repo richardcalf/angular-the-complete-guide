@@ -9,6 +9,7 @@ import { ServersComponent } from "./servers/servers.component";
 import { UserComponent } from "./users/user/user.component";
 import { UsersComponent } from "./users/users.component";
 import { AuthGaurd } from "./auth-gaurd.service";
+import { CanDeactivateGaurd } from "./servers/edit-server/can-deactivate-gaurd.service";
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -17,7 +18,7 @@ const appRoutes: Routes = [
     ] },
     { path: 'servers', canActivateChild: [AuthGaurd],component: ServersComponent, children: [
       { path: ':id', component: ServerComponent },
-      { path: ':id/edit', component: EditServerComponent }
+      { path: ':id/edit', component: EditServerComponent, canDeactivate: [CanDeactivateGaurd] }
     ] },
     { path: 'not-found', component: PageNotFoundComponent},
     { path: '**', redirectTo: '/not-found'}
