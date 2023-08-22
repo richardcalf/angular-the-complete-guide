@@ -61,4 +61,9 @@ export class EditServerComponent implements OnInit, CanComponentDeactivate {
     }
   }
 
+  onUpdateParams() {
+    console.log('update parameters');
+    this.router.navigate(['/servers', 2, 'edit'], {queryParamsHandling: 'preserve'});
+  }
+
 }
