@@ -11,6 +11,7 @@ import { UsersComponent } from "./users/users.component";
 import { AuthGaurd } from "./auth-gaurd.service";
 import { CanDeactivateGaurd } from "./servers/edit-server/can-deactivate-gaurd.service";
 import { ErrorPageComponent } from "./error-page/error-page.component";
+import { ServerResolver } from "./servers/server-resolver.service";
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -18,7 +19,7 @@ const appRoutes: Routes = [
       { path: ':id/:name', component: UserComponent }
     ] },
     { path: 'servers', canActivateChild: [AuthGaurd],component: ServersComponent, children: [
-      { path: ':id', component: ServerComponent },
+      { path: ':id', component: ServerComponent, resolve: {server: ServerResolver} },
       { path: ':id/edit', component: EditServerComponent, canDeactivate: [CanDeactivateGaurd] }
     ] },
     { path: 'not-found', component: ErrorPageComponent, data: {message: 'Error 404. Page not found'} },
