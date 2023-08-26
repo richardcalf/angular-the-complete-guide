@@ -1,0 +1,1 @@
+try implementing the main routes of our application, to load the recipe page, the shopping list page, on your own
