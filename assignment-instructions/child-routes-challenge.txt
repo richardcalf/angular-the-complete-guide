@@ -1,0 +1,18 @@
+section 12, video 160
+
+Implement child routing for our recipe route 
+example: ...4200/recipes/0 would load the first recipe in the existing list
+
+You'll need a "starting" component that say's 'please select a recipe' 
+
+
+Inside of "col-md-7", will be your <router-outlet>
+
+    <div class="col-md-7">
+      <app-recipe-detail
+        *ngIf="selectedRecipe; else infoText"
+       [recipe]="selectedRecipe" ></app-recipe-detail>
+      <ng-template #infoText>
+        <p>Please select an RC car build kit</p>
+      </ng-template>
+    </div>
