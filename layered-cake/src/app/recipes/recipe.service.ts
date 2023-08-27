@@ -23,7 +23,14 @@ export class RecipeService {
                [ 
                  new Ingredient('Kyosho Turn Buckles',12),
                  new Ingredient('Kyosho Oil Shocks',4) 
-               ])
+               ]),
+    new Recipe('Traxxas E-Revo 2.0', 
+               'Power. Strength. Speed.',
+               'https://www.modelsport.co.uk/_images/products/800/tra86086-4blue-5.jpg',
+               [ 
+                 new Ingredient('Traxxas Shock Towers',2),
+                 new Ingredient('Traxxas Speed Controller',1) 
+               ]),
   ];
 
   getRecipes() {
