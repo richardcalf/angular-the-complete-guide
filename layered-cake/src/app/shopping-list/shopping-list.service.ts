@@ -1,4 +1,5 @@
-import { EventEmitter } from "@angular/core";
+import { Subject } from "rxjs";
+
 import { Ingredient } from "../shared/ingredient.model";
 
 export class ShoppingListService {
@@ -8,14 +9,14 @@ export class ShoppingListService {
         new Ingredient('Kyosho Sway Bars', 3)
       ];
 
-      ingredientsChanged = new EventEmitter<Ingredient[]>();
+      ingredientsChanged = new Subject<Ingredient[]>();
 
       getIngredients() {
         return this.ingredients.slice();
       }
 
       private notifyChange() {
-        this.ingredientsChanged.emit(this.ingredients.slice());
+        this.ingredientsChanged.next(this.ingredients.slice());
       }
 
       addIngredient(item: Ingredient) {
