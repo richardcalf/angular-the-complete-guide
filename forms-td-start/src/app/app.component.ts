@@ -45,5 +45,18 @@ export class AppComponent {
     this.user.secretQuestion = this.signupForm.value.secret;
     this.user.answer = this.signupForm.value.questionAnswer;
     this.user.gender = this.signupForm.value.gender;
+
+    this.signupForm.reset(
+      //NB: You can pass in a javascript object with default values if you wish
+      // {
+      //     userData: {
+      //       username: 'richie rich!',
+      //       email: 'richard.calf@gmail.com'
+      //     },
+      //     secret: 'pet',
+      //     questionAnswer: 'Fido!',
+      //     gender: 'male'
+      // }
+    );
   }
 }
