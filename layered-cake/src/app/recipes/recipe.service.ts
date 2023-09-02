@@ -29,6 +29,14 @@ export class RecipeService {
                  new Ingredient('Traxxas Shock Towers',2),
                  new Ingredient('Traxxas Speed Controller',1) 
                ]),
+    new Recipe('Traxxas Stampede', 
+               'The Definitive Monster Truck',
+               'https://m.traxxas.com/sites/default/files/36054-1-Stampede-Orange-Side-RtoL-0771@1x.jpg',
+               [ 
+                 new Ingredient('Brushless VXL Motor',2),
+                 new Ingredient('19 T Pinion Gear',1),
+                 new Ingredient('13000 mAh 2s Lipo',1)
+               ]),
   ];
 
   getRecipes() {
