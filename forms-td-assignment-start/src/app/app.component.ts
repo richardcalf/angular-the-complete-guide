@@ -8,8 +8,9 @@ import { NgForm } from '@angular/forms';
 })
 export class AppComponent {  
   @ViewChild('f') htmlForm: NgForm;
-  defaultTier = 'advanced';
+  defaultTier = 'Advanced';
   submitted = false;
+  subscriptions = ['Basic','Advanced','Professional']
 
   formInfo = {
     email: '',
