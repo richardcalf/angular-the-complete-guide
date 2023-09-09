@@ -24,9 +24,25 @@ export class AppComponent implements OnInit {
     // this.htmlForm.valueChanges.subscribe(
     //   (value) => console.log(value)
     // );
+
     this.htmlForm.statusChanges.subscribe(
       (status) => console.log(status)
     );
+
+    this.htmlForm.setValue({
+      userData: {
+        username: 'richie',
+        email: 'richie@ngtd.co.au'
+      },
+      gender: 'male',
+      hobbies: []
+    });
+
+    this.htmlForm.patchValue({
+      userData: {
+        username: 'macvalley'
+      }
+    });
   }
 
   getControls() {
@@ -34,7 +50,10 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.htmlForm);
+    console.log(this.htmlForm);    
+    this.htmlForm.reset({
+      gender: 'female'
+    });
   }
 
   onAddHobby() {
