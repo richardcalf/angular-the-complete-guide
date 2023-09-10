@@ -13,8 +13,10 @@
             <span
             *ngIf="!htmlForm.get('projectname').valid && htmlForm.get('projectname').touched"
               class="help-block">
-              <span *ngIf="htmlForm.get('projectname').errors['testNameNotAllowed']">You cannot name your project 'Test'</span>
-              <span *ngIf="htmlForm.get('projectname').errors['required']">Project name is required</span>
+              <div *ngIf="statusUpdate !== 'PENDING'">
+                <span *ngIf="htmlForm.get('projectname').errors['testNameNotAllowed']">You cannot name your project 'Test'</span>
+                <span *ngIf="htmlForm.get('projectname').errors['required']">Project name is required</span>
+              </div>
           </span>
         </div>
         <div class="form-group">
