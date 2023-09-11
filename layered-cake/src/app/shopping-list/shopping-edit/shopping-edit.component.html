@@ -9,7 +9,10 @@
                            id="name"
                            class="form-control"
                            name="name"
-                           ngModel>
+                           ngModel
+                           required
+                           #name="ngModel">
+                       <span class="help-block" *ngIf="!name.valid && name.touched" >Name is required</span>
                 </div>
                 <div class="col-sm-2 form-group">
                     <label for="amount">Amount</label>
@@ -18,13 +21,18 @@
                            id="amount"
                            class="form-control"
                            name="amount"
-                           ngModel>
+                           ngModel
+                           required
+                           [pattern]="'^[1-9]+[0-9]*$'"
+                           #amount="ngModel">
+                       <span class="help-block" *ngIf="!amount.valid && amount.touched" >Amount is not valid</span>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
                     <button class="btn btn-success"
                             type="submit"
+                            [disabled]="!f.valid"
                             >Add</button>
                     <button class="btn btn-danger" type="button">Delete</button>
                     <button class="btn btn-primary" type="button">Clear</button>
