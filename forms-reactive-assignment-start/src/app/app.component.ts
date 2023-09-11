@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
+
+import { CustomValidators } from './custom-validators';
 
 @Component({
   selector: 'app-root',
@@ -15,9 +16,14 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.htmlForm = new FormGroup({
-      'projectname': new FormControl(null, [Validators.required], this.projectNameNotAllowedAsync),
-      'email': new FormControl(null, [Validators.required, Validators.email]),
-      'projectstatus': new FormControl(null, Validators.required)
+      'projectname': new FormControl(
+        null, 
+        [Validators.required, CustomValidators.projectNameNotAllowed], 
+        CustomValidators.projectNameNotAllowedAsync),
+      'email': new FormControl(
+        null, 
+        [Validators.required, Validators.email]),
+      'projectstatus': new FormControl('Critical', Validators.required)
     });
 
     this.htmlForm.statusChanges.subscribe(
@@ -29,26 +35,8 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.htmlForm);
+    console.log(this.htmlForm.value);
   }
 
-  // projectNameNotAllowed(control: FormControl): {[s: string]: boolean} {
-  //   if (this.NoTestProjectName === control.value) {
-  //   return {'testNameNotAllowed': true};
-  //   }
-  //   return null;
-  // }
-
-  projectNameNotAllowedAsync(control: FormControl): Promise<any> | Observable<any> {
-    const promise = new Promise<any>((resolve, reject) => {
-      setTimeout(() => {
-        if (control.value === 'Test') {
-          resolve({'testNameNotAllowed': true});
-        } else {
-          resolve(null);
-        }
-      }, 1200);
-    });
-    return promise;
-  }
+  
 }
