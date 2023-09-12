@@ -10,6 +10,7 @@ export class ShoppingListService {
       ];
 
       ingredientsChanged = new Subject<Ingredient[]>();
+      editModeInvoked = new Subject<number>();
 
       getIngredients() {
         return this.ingredients.slice();
