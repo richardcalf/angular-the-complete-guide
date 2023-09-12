@@ -16,6 +16,10 @@ export class ShoppingListService {
         return this.ingredients.slice();
       }
 
+      getIngredient(i: number): Ingredient {
+        return this.ingredients[i];
+      }
+
       private notifyChange() {
         this.ingredientsChanged.next(this.ingredients.slice());
       }
