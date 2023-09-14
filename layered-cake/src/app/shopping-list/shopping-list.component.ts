@@ -14,6 +14,8 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
 
   ingredients: Ingredient[];
   private subscription: Subscription;
+  private clearedSub: Subscription;
+  globalIndex = -1;
 
   ngOnInit() {
     this.ingredients = this.shoppingSerivce.getIngredients();
@@ -22,13 +24,21 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
         this.ingredients = ingredients;
       }
     );
+
+    this.clearedSub = this.shoppingSerivce.formCleared.subscribe(
+      () => {
+        this.globalIndex = -1;
+      }
+    )
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.clearedSub.unsubscribe();
   }
 
   selectListItem(i: number) {
     this.shoppingSerivce.editModeInvoked.next(i);
+    this.globalIndex = i;
   }
 }

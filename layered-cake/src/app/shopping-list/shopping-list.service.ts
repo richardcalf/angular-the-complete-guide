@@ -11,6 +11,7 @@ export class ShoppingListService {
 
       ingredientsChanged = new Subject<Ingredient[]>();
       editModeInvoked = new Subject<number>();
+      formCleared = new Subject();
 
       getIngredients() {
         return this.ingredients.slice();
