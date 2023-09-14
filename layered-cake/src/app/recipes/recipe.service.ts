@@ -2,10 +2,13 @@ import { Injectable } from "@angular/core";
 import { Recipe } from "./recipe.model";
 import { Ingredient } from "../shared/ingredient.model";
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
+import { Subject } from "rxjs";
 
 @Injectable()
 export class RecipeService {
   constructor(private shoppingService: ShoppingListService) {}
+
+  recipesChanged = new Subject<Recipe[]>();
 
   private recipes: Recipe[] = [
     new Recipe('Tamiya Monster Beetle!', 
@@ -46,8 +49,22 @@ export class RecipeService {
   getRecipe(id: number) {
     return this.recipes.slice()[id];
   }
+
+  private notifyChange() {
+    this.recipesChanged.next(this.recipes.slice());
+  }
   
   addIngredientsToShoppingList(items: Ingredient[]) {
      this.shoppingService.addIngredients(items);
+  }
+
+  addRecipe(recipe: Recipe) {
+    this.recipes.push(recipe);
+    this.notifyChange();
+  }
+
+  updateRecipe(index: number, recipe: Recipe) {
+    this.recipes[index] = recipe;
+    this.notifyChange();
   }
 }
