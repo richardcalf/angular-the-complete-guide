@@ -11,7 +11,7 @@ export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
 
   private recipes: Recipe[] = [
-    new Recipe('Tamiya Monster Beetle!', 
+    new Recipe('Tamiya Monster Beetle', 
                'Build kit for the timeless Monster Beetle',
                'https://i.ytimg.com/vi/1DFhzJhrLzY/maxresdefault.jpg',
                [ 
@@ -65,6 +65,11 @@ export class RecipeService {
 
   updateRecipe(index: number, recipe: Recipe) {
     this.recipes[index] = recipe;
+    this.notifyChange();
+  }
+
+  removeRecipe(index: number) {
+    this.recipes.splice(index,1);
     this.notifyChange();
   }
 }
