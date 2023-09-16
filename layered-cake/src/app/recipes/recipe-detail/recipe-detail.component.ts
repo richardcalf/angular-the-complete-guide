@@ -40,9 +40,9 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onDeleteRecipe() {
-    if(confirm("Delete "+this.recipe.name+"?")) {
+    // if(confirm("Delete "+this.recipe.name+"?")) {
       this.recipeService.removeRecipe(this.index);
       this.router.navigate(['../']);
-    }
+    // }
   }
 }
