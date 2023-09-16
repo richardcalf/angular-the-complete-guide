@@ -7,7 +7,7 @@ import { Params } from 'express-serve-static-core';
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
-  styleUrls: ['./recipe-detail.component.css']
+  styleUrls: ['./recipe-detail.component.css','../../app.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
   constructor(private recipeService: RecipeService, private route: ActivatedRoute, private router: Router) {}

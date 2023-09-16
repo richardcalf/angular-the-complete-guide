@@ -1,33 +1,14 @@
 <div class="row">
     <div class="col-xs-12">
-        <img [src]="recipe.imagePath"
-             alt="{{recipe.name}}"             
-             class="img-responsive"
-             style="max-height: 170px">
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
       <h1>{{recipe.name}}</h1>
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12">
-        {{recipe.description}}
+        <h4>{{recipe.description}}</h4>
     </div>
 </div>
-<br>
-<div class="row">
-    <div class="col-xs-12">
-        <ul class="list-group">
-            <li 
-              class="list-group-item"
-              *ngFor="let ingredient of recipe.ingredients" >
-              {{ ingredient.name }} - {{ ingredient.amount }}
-            </li>
-        </ul>
-    </div>
-</div>
+<hr>
 <div class="row">
     <div class="col-xs-12">
         <div appDropdown class="btn-group">
@@ -44,3 +25,24 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-xs-12 thick-butter-top">
+        <img [src]="recipe.imagePath"
+             alt="{{recipe.name}}"             
+             class="img-responsive"
+             >
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-xs-12">
+        <ul class="list-group">
+            <li 
+              class="list-group-item"
+              *ngFor="let ingredient of recipe.ingredients" >
+              {{ ingredient.name }} - {{ ingredient.amount }}
+            </li>
+        </ul>
+    </div>
+</div>
+

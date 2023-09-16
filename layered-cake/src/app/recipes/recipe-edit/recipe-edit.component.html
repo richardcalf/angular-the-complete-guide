@@ -27,13 +27,14 @@
                           type="text" 
                           id="imagePath"
                           formControlName="imagePath"
-                          class="form-control">
+                          class="form-control"
+                          #imgagePath>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <img src="" class="img-responsive">
+                    <img [src]="imgagePath.value" class="img-responsive max-image-one-tweny" >
                 </div>
             </div>
             <div class="row">

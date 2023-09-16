@@ -6,6 +6,18 @@
     margin-top: 6px;
 }
 
+.thick-butter-top {
+    margin-top: 14px;
+}
+
+.max-image-one-seventy {
+    max-height: 170px
+}
+
+.max-image-one-tweny {
+    max-height: 125px
+}
+
 input.ng-invalid.ng-touched,
 textarea.ng-invalid.ng-touched {
     border: 1px solid rgb(235, 89, 31);
