@@ -1,0 +1,11 @@
+Part 1
+
+build a reverse pipe, which basically reverses a string
+
+there is a reverse method in javascript, however it only works on real arrays, not on strings.
+
+you'd have to split the string by an empty character first, then apply reverse, then join it together with an empty charater to get a string again.
+
+Part 2
+
+build a sort pipe, when applied will sort the list alphabetically, for example
