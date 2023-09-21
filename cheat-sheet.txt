@@ -10,6 +10,13 @@
 
 3. Once inside your project folder, install bootstrap locally inside your angular project folder..
 ] npm install --save bootstrap@3
+
+4. Tell angular to use bootstrap
+
+inside angular.json, find ... "styles" and add the path to the minified bootstrap css you installed
+
+"styles": [
+"node_modules/bootstrap/dist/css/bootstrap.min.css",
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
