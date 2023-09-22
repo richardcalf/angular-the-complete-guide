@@ -8,24 +8,34 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent implements OnInit {
   loadedPosts = [];
+  apiEndPoint = 'https://ng-layer-cake-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json';
 
   constructor(private http: HttpClient) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.fetchPosts();
+  }
 
   onCreatePost(postData: { title: string; content: string }) {
     // Send Http request
-    this.http.post('https://ng-layer-cake-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json',
+    this.http.post(this.apiEndPoint,
     postData).subscribe(response => {
       console.log(response);
     });
   }
 
   onFetchPosts() {
-    // Send Http request
+    this.fetchPosts();
   }
 
   onClearPosts() {
     // Send Http request
+  }
+
+  private fetchPosts() {
+    this.http.get(this.apiEndPoint)
+    .subscribe(posts => {
+      console.log(posts);
+    })
   }
 }
