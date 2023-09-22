@@ -68,6 +68,10 @@ export class RecipeService {
      this.shoppingService.addIngredients(items);
   }
 
+  addIngredientToShoppingList(item: Ingredient) {
+    this.shoppingService.addIngredient(item);
+  }
+
   addRecipe(recipe: Recipe) {
     this.recipes.push(recipe);
     this.notifyChange();

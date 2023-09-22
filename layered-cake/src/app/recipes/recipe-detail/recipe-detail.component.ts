@@ -31,6 +31,10 @@ export class RecipeDetailComponent implements OnInit {
     this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
   }
 
+  onRecipeItemToShoppingList(i: number) {
+    this.recipeService.addIngredientToShoppingList(this.recipe.ingredients[i]);
+  }
+
   onEditRecipe() {
     //all three of these navigate methods do the same thing. to practice
     this.router.navigate(['edit'], {relativeTo: this.route});
@@ -45,4 +49,6 @@ export class RecipeDetailComponent implements OnInit {
       this.router.navigate(['../']);
     // }
   }
+
+  
 }

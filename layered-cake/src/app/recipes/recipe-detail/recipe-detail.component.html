@@ -39,8 +39,9 @@
         <ul class="list-group">
             <li 
               class="list-group-item"
-              *ngFor="let ingredient of recipe.ingredients" >
+              *ngFor="let ingredient of recipe.ingredients; let i = index;" >
               {{ ingredient.name }} - {{ ingredient.amount }}
+              <button class="btn btn-success go-right" title="add to shopping list"  (click)="onRecipeItemToShoppingList(i)"></button>
             </li>
         </ul>
     </div>
