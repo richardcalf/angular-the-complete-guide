@@ -30,7 +30,9 @@ export class RecipeService {
                'https://www.modelsport.co.uk/_images/products/800/tra86086-4blue-5.jpg',
                [ 
                  new Ingredient('Traxxas Shock Towers',2),
-                 new Ingredient('Traxxas Speed Controller',1) 
+                 new Ingredient('Traxxas Speed Controller',1),
+                 new Ingredient('Traxxas VLX Brushless 2000kv Motor',1),
+                 new Ingredient('Traxxas X Grade Sway Bars',4),
                ]),
     new Recipe('Traxxas Stampede', 
                'The Definitive Monster Truck',
@@ -39,6 +41,14 @@ export class RecipeService {
                  new Ingredient('Brushless VXL Motor',2),
                  new Ingredient('19 T Pinion Gear',1),
                  new Ingredient('13000 mAh 2s Lipo',1)
+               ]),
+    new Recipe('Traxxas X-Maxx', 
+               'The Ulitmate RC Monster Truck',
+               'https://m.traxxas.com/sites/default/files/news/77086-4-X-Maxx-OrangeX-Front-LtoR.jpg',
+               [ 
+                 new Ingredient('X-Maxx WideMaxx Kit',1),
+                 new Ingredient('Traxxas Velineon 1200XL Brushless Motor',1),
+                 new Ingredient('Traxxas LIPO 6700mAh 14,8V',1)
                ]),
   ];
 
