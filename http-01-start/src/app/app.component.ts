@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Post } from './post.model';
 
 
 @Component({
@@ -18,9 +19,10 @@ export class AppComponent implements OnInit {
     // this.fetchPosts();
   }
 
-  onCreatePost(postData: { title: string; content: string }) {
+  onCreatePost(postData: Post) {
     // Send Http request
-    this.http.post(this.apiEndPoint,
+    this.http
+    .post<{name: string}>(this.apiEndPoint,
     postData).subscribe(response => {
       console.log(response);
     });
@@ -35,15 +37,15 @@ export class AppComponent implements OnInit {
   }
 
   private fetchPosts() {
-    this.http.get(this.apiEndPoint)
-    .pipe(map(response => {
-      const posts = [];
+    this.http.get<{[key: string]: Post}>(this.apiEndPoint)
+    .pipe(map((response) => {
+      const postsArray: Post[] = [];
       for (const key in response) {
         if(response.hasOwnProperty(key)) {
-          posts.push({ ...response[key], id: key});        
+          postsArray.push({ ...response[key], id: key});
         }
       }
-      return posts;
+      return postsArray;
     }))
     .subscribe(posts => {
       console.log(posts);
