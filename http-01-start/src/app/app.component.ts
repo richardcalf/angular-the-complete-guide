@@ -15,7 +15,10 @@ export class AppComponent implements OnInit {
 
   onCreatePost(postData: { title: string; content: string }) {
     // Send Http request
-    console.log(postData);
+    this.http.post('https://ng-layer-cake-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json',
+    postData).subscribe(response => {
+      console.log(response);
+    });
   }
 
   onFetchPosts() {
