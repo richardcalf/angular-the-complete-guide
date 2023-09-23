@@ -38,6 +38,6 @@ export class AppComponent implements OnInit {
   }
 
   onClearPosts() {
-    // Send Http request
+    // practice exercise: delete all posts via a request
   }
 }
