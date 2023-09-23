@@ -16,7 +16,7 @@ export class PostsService {
                     console.log(response);
                     });
     }
-    
+
     fetchPosts() {
         return this.http
           .get<{[key: string]: Post}>(this.apiEndPoint)
@@ -34,9 +34,6 @@ export class PostsService {
     }
 
     deletePosts() {
-        this.http.delete(this.apiEndPoint)
-        .subscribe(response => {
-            console.log(response);
-        })
+        return this.http.delete(this.apiEndPoint);
     }
 }
