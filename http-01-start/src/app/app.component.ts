@@ -12,6 +12,7 @@ import { Post } from './post.model';
 export class AppComponent implements OnInit {
   loadedPosts: Post[] = [];
   apiEndPoint = 'https://ng-layer-cake-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json';
+  isLoading = false;
 
   constructor(private http: HttpClient) {}
 
@@ -37,6 +38,7 @@ export class AppComponent implements OnInit {
   }
 
   private fetchPosts() {
+    this.isLoading = true;
     this.http.get<{[key: string]: Post}>(this.apiEndPoint)
     .pipe(map((response) => {
       const postsArray: Post[] = [];
@@ -49,6 +51,7 @@ export class AppComponent implements OnInit {
     }))
     .subscribe(posts => {
       this.loadedPosts = posts;
+      this.isLoading = false;
     })
   }
 }
