@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Post } from './post.model';
 import { PostsService } from './posts.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -10,15 +11,19 @@ import { PostsService } from './posts.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   loadedPosts: Post[] = [];
   
   isLoading = false;
   error = null;
+  private errorSub: Subscription;
 
   constructor(private postsService: PostsService) {}
 
   ngOnInit() {
+    this.errorSub = this.postsService.error.subscribe(errorMessage => {
+      this.error = errorMessage;
+    });
   }
 
   onCreatePost(postData: Post) {
@@ -50,5 +55,9 @@ export class AppComponent implements OnInit {
       this.isLoading = false;
     });
   
+  }
+
+  ngOnDestroy(): void {
+    this.errorSub.unsubscribe();
   }
 }

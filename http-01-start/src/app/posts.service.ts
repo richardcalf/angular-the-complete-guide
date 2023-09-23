@@ -2,10 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Post } from './post.model';
 import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class PostsService {
     constructor(private http: HttpClient) {}
+    error = new Subject<string>();
 
     apiEndPoint = 'https://ng-layer-cake-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json';
 
@@ -14,6 +16,8 @@ export class PostsService {
              .post<{name: string}>(this.apiEndPoint,
                   postData).subscribe(response => {
                     console.log(response);
+                    }, error => {
+                        this.error.next(error.message);
                     });
     }
 
