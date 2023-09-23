@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   loadedPosts: Post[] = [];
   
   isLoading = false;
+  error = null;
 
   constructor(private postsService: PostsService) {}
 
@@ -34,6 +35,9 @@ export class AppComponent implements OnInit {
     .subscribe(posts => {
       this.loadedPosts = posts;
       this.isLoading = false;
+    }, error => {
+      this.error = error.message;
+      console.log(error);
     });
   }
 
