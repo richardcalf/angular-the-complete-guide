@@ -9,7 +9,6 @@ export class PostsService {
 
     apiEndPoint = 'https://ng-layer-cake-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json';
 
-
     newPost(postData: Post) {
         this.http
              .post<{name: string}>(this.apiEndPoint,
@@ -19,7 +18,7 @@ export class PostsService {
     }
 
     fetchPosts() {
-        this.http
+        return this.http
           .get<{[key: string]: Post}>(this.apiEndPoint)
           .pipe(
             map((response) => {
@@ -31,8 +30,6 @@ export class PostsService {
                }
                return postsArray;
               })
-            )
-            .subscribe(posts => {
-           });
+            );
     }
 }
