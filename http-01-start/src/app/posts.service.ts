@@ -16,7 +16,7 @@ export class PostsService {
                     console.log(response);
                     });
     }
-
+    
     fetchPosts() {
         return this.http
           .get<{[key: string]: Post}>(this.apiEndPoint)
@@ -31,5 +31,12 @@ export class PostsService {
                return postsArray;
               })
             );
+    }
+
+    deletePosts() {
+        this.http.delete(this.apiEndPoint)
+        .subscribe(response => {
+            console.log(response);
+        })
     }
 }

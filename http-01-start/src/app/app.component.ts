@@ -39,5 +39,6 @@ export class AppComponent implements OnInit {
 
   onClearPosts() {
     // practice exercise: delete all posts via a request
+    this.postsService.deletePosts();
   }
 }
