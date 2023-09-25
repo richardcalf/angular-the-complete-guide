@@ -56,7 +56,8 @@ export class PostsService {
     deletePosts() {
         return this.http.delete(this.apiEndPoint,
           {
-            observe: 'events'
+            observe: 'events',
+            responseType: 'text'
           })
           .pipe(tap(event => {
             console.log(event);
