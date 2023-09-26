@@ -3,11 +3,7 @@ import { Subject } from "rxjs";
 import { Ingredient } from "../shared/ingredient.model";
 
 export class ShoppingListService {
-    private ingredients: Ingredient[] = [
-        new Ingredient('Tamiya Wheel Hubs', 4),
-        new Ingredient('Kyosho Front Drive Shaft', 2),
-        new Ingredient('Kyosho Sway Bars', 3)
-      ];
+    private ingredients: Ingredient[] = [];
 
       ingredientsChanged = new Subject<Ingredient[]>();
       editModeInvoked = new Subject<number>();
