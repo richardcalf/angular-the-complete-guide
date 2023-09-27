@@ -13,8 +13,8 @@ const appRoutes: Routes = [
     { path: 'recipes', component: RecipesComponent, children: [
         { path: '', component: RecipeNotSelectedComponent },
         { path: 'new', component: RecipeEditComponent },
-        { path: ':id', component: RecipeDetailComponent },
-        { path: ':id/edit', component: RecipeEditComponent }
+        { path: ':id', component: RecipeDetailComponent, resolve: [RecipesResolverService] },
+        { path: ':id/edit', component: RecipeEditComponent, resolve: [RecipesResolverService] }
     ] },
     { path: 'shoppinglist', component: ShoppingListComponent },
     { path: '**', component: PageNotFoundComponent }
