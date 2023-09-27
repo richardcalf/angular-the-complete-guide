@@ -7,16 +7,18 @@ import { RecipeDetailComponent } from "./recipes/recipe-detail/recipe-detail.com
 import { RecipeNotSelectedComponent } from "./recipes/recipe-not-selected/recipe-not-selected.component";
 import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component";
 import { RecipesResolverService } from "./recipes/recipes-resolver.service";
+import { AuthComponent } from "./auth/auth.component";
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/recipes', pathMatch: 'full' },
-    { path: 'recipes', component: RecipesComponent, children: [
+    { path: 'recipes', component: RecipesComponent, resolve: [RecipesResolverService], children: [
         { path: '', component: RecipeNotSelectedComponent },
         { path: 'new', component: RecipeEditComponent },
         { path: ':id', component: RecipeDetailComponent, resolve: [RecipesResolverService] },
         { path: ':id/edit', component: RecipeEditComponent, resolve: [RecipesResolverService] }
     ] },
     { path: 'shoppinglist', component: ShoppingListComponent },
+    { path: 'auth', component: AuthComponent },
     { path: '**', component: PageNotFoundComponent }
 ];
 
