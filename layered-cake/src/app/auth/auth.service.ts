@@ -1,24 +1,28 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-
-interface AuthResponseData {
-    idToken: string
-    email: string
-    refreshToken: string
-    expiresIn: string
-    localId: string
-}
+import { AuthSignInResponseData, AuthSignUpResponseData } from "../shared/authentication.models";
 
 @Injectable({providedIn: 'root'})
 export class AuthenticationSevice {
     constructor(private https: HttpClient) {}
-    apiEndPoint = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyARHwHvqgIHSpdFk_HipGm03MPzdDWubZM';
+    apiSignUp = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyARHwHvqgIHSpdFk_HipGm03MPzdDWubZM';
+    apiSignIn = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyARHwHvqgIHSpdFk_HipGm03MPzdDWubZM';
 
-    signup(email: string, password: string) {
-        return this.https.post<AuthResponseData>(this.apiEndPoint,
-            { email: email,
+    signUp(email: string, password: string) {
+        return this.https.post<AuthSignUpResponseData>(this.apiSignUp,
+            { 
+              email: email,
               password: password,
               returnSecureToken: true
+            });
+    }
+
+    signIn(email: string, password: string) {
+       return this.https.post<AuthSignInResponseData>(this.apiSignIn,
+            {
+                email: email,
+                password: password,
+                returnSecureToken: true
             });
     }
 }
