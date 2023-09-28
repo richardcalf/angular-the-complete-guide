@@ -26,3 +26,7 @@ textarea.ng-invalid.ng-touched {
 span.help-block {
     color: rgb(220, 223, 50);
 }
+
+.align-center {
+    text-align: center;
+}
