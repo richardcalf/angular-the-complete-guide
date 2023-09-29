@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { AuthSignInResponseData, AuthSignUpResponseData } from "../shared/authentication.models";
+import { AuthResponseData } from "../shared/authentication.models";
 import { catchError } from "rxjs/operators";
 import { throwError } from "rxjs";
 
@@ -11,7 +11,7 @@ export class AuthenticationSevice {
     apiSignIn = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyARHwHvqgIHSpdFk_HipGm03MPzdDWubZM';
 
     signUp(email: string, password: string) {
-        return this.https.post<AuthSignUpResponseData>(this.apiSignUp,
+        return this.https.post<AuthResponseData>(this.apiSignUp,
             { 
               email: email,
               password: password,
@@ -35,7 +35,7 @@ export class AuthenticationSevice {
     }
 
     signIn(email: string, password: string) {
-       return this.https.post<AuthSignInResponseData>(this.apiSignIn,
+       return this.https.post<AuthResponseData>(this.apiSignIn,
             {
                 email: email,
                 password: password,
