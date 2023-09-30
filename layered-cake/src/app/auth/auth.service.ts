@@ -4,10 +4,11 @@ import { AuthResponseData } from "../shared/authentication.models";
 import { catchError, tap } from "rxjs/operators";
 import { Subject, BehaviorSubject, throwError } from "rxjs";
 import { User } from "../shared/authentication.models";
+import { Router } from "@angular/router";
 
 @Injectable({providedIn: 'root'})
 export class AuthenticationSevice {
-    constructor(private https: HttpClient) {}
+    constructor(private https: HttpClient, private router: Router) {}
     apiSignUp = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyARHwHvqgIHSpdFk_HipGm03MPzdDWubZM';
     apiSignIn = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyARHwHvqgIHSpdFk_HipGm03MPzdDWubZM';
     user = new BehaviorSubject<User>(null);
@@ -48,6 +49,11 @@ export class AuthenticationSevice {
                 );
              })
         );
+    }
+
+    signOut() {
+        this.user.next(null);
+        this.router.navigate(['/auth']);
     }
 
     private handleAuthentication(
