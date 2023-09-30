@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { AuthResponseData } from "../shared/authentication.models";
 import { catchError, tap } from "rxjs/operators";
-import { Subject, throwError } from "rxjs";
+import { Subject, BehaviorSubject, throwError } from "rxjs";
 import { User } from "../shared/authentication.models";
 
 @Injectable({providedIn: 'root'})
@@ -10,7 +10,7 @@ export class AuthenticationSevice {
     constructor(private https: HttpClient) {}
     apiSignUp = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyARHwHvqgIHSpdFk_HipGm03MPzdDWubZM';
     apiSignIn = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyARHwHvqgIHSpdFk_HipGm03MPzdDWubZM';
-    user = new Subject<User>();
+    user = new BehaviorSubject<User>(null);
 
     signUp(email: string, password: string) {
         return this.https.post<AuthResponseData>(this.apiSignUp,
