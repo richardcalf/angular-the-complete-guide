@@ -53,7 +53,31 @@ export class AuthenticationSevice {
 
     signOut() {
         this.user.next(null);
+        localStorage.removeItem('userData');
         this.router.navigate(['/auth']);
+    }
+
+    autoSignIn() {
+        const userData:{
+             email: string,
+             id: string,
+             _token: string,
+             _tokenExpirationDate: string
+        } = JSON.parse(localStorage.getItem('userData'));
+        if (!userData) {
+            return;
+        }
+
+        const loadedUser = new User(
+            userData.email,
+            userData.id,
+            userData._token,
+            new Date(userData._tokenExpirationDate)
+        );
+
+        if (loadedUser.token) {
+            this.user.next(loadedUser);
+        }
     }
 
     private handleAuthentication(
@@ -65,6 +89,7 @@ export class AuthenticationSevice {
         const expireDate = new Date(new Date().getTime() + expiresIn * 1000);
         const user = new User(email, userId, token, expireDate);
         this.user.next(user);
+        localStorage.setItem('userData', JSON.stringify(user));
     }
 
     private handleError(error: HttpErrorResponse) {
