@@ -18,6 +18,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { AlertComponent } from './shared/alert/alert.component';
 import { PlaceHolderDirective } from './shared/placeholder/placeholder.directive';
 import { RecipesModule } from './recipes/recipes.module';
+import { RecipesRoutingModule } from './recipes/recipes-routing.module';
 
 @NgModule({
   declarations: [
@@ -37,8 +38,8 @@ import { RecipesModule } from './recipes/recipes.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RecipesModule,
     AppRoutingModule,
-    RecipesModule
   ],
   providers: [ShoppingListService, RecipeService, 
      { 
