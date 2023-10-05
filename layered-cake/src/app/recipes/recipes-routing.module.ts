@@ -6,10 +6,11 @@ import { RecipeEditComponent } from "./recipe-edit/recipe-edit.component";
 import { RecipeNotSelectedComponent } from "./recipe-not-selected/recipe-not-selected.component";
 import { RecipesResolverService } from "./recipes-resolver.service";
 import { RecipesComponent } from "./recipes.component";
+import { PageNotFoundComponent } from "../page-not-found/page-not-found.component";
 
 const routes: Routes = [
     { 
-        path: 'recipes', component: RecipesComponent, canActivate: [AuthGaurd], children: 
+        path: '', component: RecipesComponent, canActivate: [AuthGaurd], children: 
         [
             { path: '', component: RecipeNotSelectedComponent },
             { path: 'new', component: RecipeEditComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
         ]
         
     },
+    
     
 ];
 
