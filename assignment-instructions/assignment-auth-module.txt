@@ -1,0 +1,1 @@
+outsource the auth component, and it's route, into a separate feature module
