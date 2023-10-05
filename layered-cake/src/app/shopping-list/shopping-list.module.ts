@@ -7,7 +7,7 @@ import { SharedModule } from "../shared/shared.module";
 
 const routes: Routes = [
     {
-         path: 'shoppinglist', component: ShoppingListComponent 
+         path: '', component: ShoppingListComponent 
     },
 ];
 

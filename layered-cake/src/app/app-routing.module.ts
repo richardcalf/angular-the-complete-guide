@@ -5,7 +5,10 @@ import { AuthGaurd } from "./auth/auth.gaurd";
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/recipes', pathMatch: 'full' },
-    { path: 'recipes',  loadChildren: () => import('./recipes/recipes.module').then(m => m.RecipesModule) },
+    { path: 'recipes', loadChildren: () => import('./recipes/recipes.module').then(m => m.RecipesModule) },
+    { path: 'shoppinglist', loadChildren: () => import('./shopping-list/shopping-list.module').then(s => s.ShoppingListModule) },
+    { path: 'auth', loadChildren: () => import('./auth/auth.module').then(a => a.AuthModule) },
+    
     { path: '**', component: PageNotFoundComponent }
 ];
 
