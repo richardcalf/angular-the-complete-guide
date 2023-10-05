@@ -11,7 +11,7 @@
 <hr>
 <div class="row">
     <div class="col-xs-12">
-        <div appDropdown class="btn-group">
+        <div (click)="isOpen = !isOpen;" [ngClass]="getClassOpen()">
             <button 
               type="button" 
               class="btn btn-primary dropdown-toggle">
