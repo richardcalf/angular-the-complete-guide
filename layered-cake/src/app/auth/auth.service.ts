@@ -2,15 +2,16 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { AuthResponseData } from "../shared/authentication.models";
 import { catchError, tap } from "rxjs/operators";
-import { Subject, BehaviorSubject, throwError } from "rxjs";
+import { BehaviorSubject, throwError } from "rxjs";
 import { User } from "../shared/authentication.models";
 import { Router } from "@angular/router";
+import { environment } from "src/environments/environment";
 
 @Injectable({providedIn: 'root'})
 export class AuthenticationSevice {
     constructor(private https: HttpClient, private router: Router) {}
-    apiSignUp = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyARHwHvqgIHSpdFk_HipGm03MPzdDWubZM';
-    apiSignIn = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyARHwHvqgIHSpdFk_HipGm03MPzdDWubZM';
+    apiSignUp = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey;
+    apiSignIn = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseAPIKey;
     user = new BehaviorSubject<User>(null);
     private tokenExpirationTimer: any;
 
