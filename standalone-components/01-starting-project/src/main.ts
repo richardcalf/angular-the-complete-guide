@@ -10,6 +10,4 @@ if (environment.production) {
   enableProdMode();
 }
 
-bootstrapApplication(AppComponent, {
-  providers: [AnalyticsService]
-});
+bootstrapApplication(AppComponent);
