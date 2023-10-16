@@ -1,5 +1,5 @@
 import { NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-signals',
@@ -9,15 +9,15 @@ import { Component } from '@angular/core';
 })
 export class SignalsComponent {
   actions: string[] = [];
-  counter = 0;
+  counter = signal(0);
 
   increment() {
-    this.counter++;
+    this.counter.update((oldCounter) => oldCounter + 1);
     this.actions.push('INCREMENT');
   }
 
   decrement() {
-    this.counter--;
+    this.counter.update((oldCounter) => oldCounter - 1);
     this.actions.push('DECREMENT');
   }
 }
