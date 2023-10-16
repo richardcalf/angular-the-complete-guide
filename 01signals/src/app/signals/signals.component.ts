@@ -2,12 +2,12 @@ import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-default',
-  templateUrl: './default.component.html',
+  selector: 'app-signals',
+  templateUrl: './signals.component.html',
   standalone: true,
   imports: [NgFor],
 })
-export class DefaultComponent {
+export class SignalsComponent {
   actions: string[] = [];
   counter = 0;
 
