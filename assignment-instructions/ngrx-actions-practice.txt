@@ -1,0 +1,5 @@
+Get the Decrement button to work on the current project
+
+* Add a new action for decrementing the counter 
+* Make sure this action gets dispatched
+* And also handled in the reducer
