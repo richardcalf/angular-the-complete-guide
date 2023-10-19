@@ -245,6 +245,19 @@ thereafter, got to Authentication and choose "Email/Password" Provider
 
 
 ] ng add @ngrx/effects
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Some things to keep in mind:
+
+1) We'll install NgRx via npm install --save @ngrx/store => You could use ng add @ngrx/store instead (as shown in the previous lectures)
+
+2) We'll use the "old" actions, reducers & effects syntax (i.e., without createAction(), createReducer() and createEffect())
+
+=> With the exception of the old effects syntax (which uses @Effect(), which is not supported anymore), you can stick to that syntax. Alternatively, you can switch to the approach you learned about in the previous lectures.
+
+As mentioned, you'll find multiple code snapshot attachments on various lectures - snapshots with the "old" and "new" syntax. This should make following along easy & straightforward.
+
+
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
