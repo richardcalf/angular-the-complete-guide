@@ -5,3 +5,18 @@ export const addIngredient = createAction(
     '[Shopping] AddIngredient',
     props<{ingredient: Ingredient}>()
 );
+
+export const addIngredients = createAction(
+    '[Shopping] AddIngredients',
+    props<{ingredients: Ingredient[]}>()
+);
+
+export const updateIngredient = createAction(
+    '[Shopping] UpdateIngredient',
+    props<{index: number, ingredient: Ingredient}>()
+);
+
+export const removeIngredient = createAction(
+    '[Shopping] RemoveIngredient',
+    props<{index: number}>()
+)
