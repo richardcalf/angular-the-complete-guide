@@ -19,4 +19,13 @@ export const updateIngredient = createAction(
 export const removeIngredient = createAction(
     '[Shopping] RemoveIngredient',
     props<{index: number}>()
-)
+);
+
+export const startEdit = createAction(
+    '[Shopping] StartEdit',
+    props<{index: number}>()
+);
+
+export const stopEdit = createAction(
+    '[Shopping] StopEdit',
+);

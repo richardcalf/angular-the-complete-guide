@@ -4,6 +4,7 @@ import { ShoppingListService } from './shopping-list.service';
 import { Subscription, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromShoppingList from './store/shopping-list.reducer'
+import { startEdit } from './store/shopping-list.actions';
 
 @Component({
   selector: 'app-shopping-list',
@@ -41,7 +42,8 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   }
 
   selectListItem(i: number) {
-    this.shoppingSerivce.editModeInvoked.next(i);
+    // this.shoppingSerivce.editModeInvoked.next(i);
+    this.store.dispatch(startEdit({ index: i }))
     this.globalIndex = i;
   }
 }
