@@ -3,12 +3,12 @@ import { User } from "src/app/shared/authentication.models";
 
 export const login = createAction(
     '[Auth] Login',
-    props<{user: {
+    props<{
         email: string;
         userId: string;
         token: string;
         expireDate: Date;
-    }}>()
+    }>()
 )
 
 export const logout = createAction(

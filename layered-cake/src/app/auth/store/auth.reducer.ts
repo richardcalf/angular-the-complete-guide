@@ -14,7 +14,7 @@ export const authReducer = createReducer(
     initialState,
     on(login, (state, action) => ({
         ...state,
-        user: new User(action.user.email, action.user.userId, action.user.token,action.user.expireDate)
+        user: new User(action.email, action.userId, action.token,action.expireDate)
     })),
     on(logout, (state, action) => ({
         ...state,
