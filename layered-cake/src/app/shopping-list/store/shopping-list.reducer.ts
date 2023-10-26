@@ -29,24 +29,28 @@ export const shoppingListReducer = createReducer(
         ingredients: [...state.ingredients, ...action.ingredients]
     })),
     on(updateIngredient, (state, action) => {
-        const ingredient = state.ingredients[action.index];
+        const ingredient = state.ingredients[state.itemIndex];
         const updatedIngredient = {
             ...ingredient,
             ...action.ingredient
         };
         const updatedIngredients = [...state.ingredients];
-        updatedIngredients[action.index] = updatedIngredient;
+        updatedIngredients[state.itemIndex] = updatedIngredient;
 
         return {
             ...state,
-            ingredients: updatedIngredients
+            ingredients: updatedIngredients,
+            itemIndex: -1,
+            editingIngredient: null
         };
     }),
     on(removeIngredient, (state, action) => ({
         ...state,
         ingredients: state.ingredients.filter((ig, i) => {
-            return i !== action.index;
-        })
+            return i !== state.itemIndex;
+        }),
+        itemIndex: -1,
+        editingIngredient: null
     })
     ),
     on(startEdit, (state, action) => ({

@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
-import { ShoppingListService } from './shopping-list.service';
 import { Subscription, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromShoppingList from './store/shopping-list.reducer'
@@ -12,37 +11,25 @@ import { startEdit } from './store/shopping-list.actions';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
-  constructor(private shoppingSerivce: ShoppingListService, private store: Store<fromShoppingList.AppState>) {
+  constructor(private store: Store<fromShoppingList.AppState>) {
   }
 
   ingredients: Observable<{ingredients: Ingredient[]}>;
-  private subscription: Subscription;
   private clearedSub: Subscription;
   globalIndex = -1;
 
   ngOnInit() {
     this.ingredients = this.store.select('shoppingList');
-    // this.ingredients = this.shoppingSerivce.getIngredients();
-    // this.subscription = this.shoppingSerivce.ingredientsChanged.subscribe(
-    //   (ingredients: Ingredient[]) => {
-    //     this.ingredients = ingredients;
-    //   }
-    // );
-
-    this.clearedSub = this.shoppingSerivce.formCleared.subscribe(
-      () => {
-        this.globalIndex = -1;
-      }
-    )
+    this.clearedSub = this.store.select('shoppingList').subscribe(d => {
+      this.globalIndex = d.itemIndex;
+    });
   }
 
   ngOnDestroy() {
-    // this.subscription.unsubscribe();
     this.clearedSub.unsubscribe();
   }
 
   selectListItem(i: number) {
-    // this.shoppingSerivce.editModeInvoked.next(i);
     this.store.dispatch(startEdit({ index: i }))
     this.globalIndex = i;
   }

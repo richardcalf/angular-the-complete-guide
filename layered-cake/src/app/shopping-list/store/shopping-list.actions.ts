@@ -1,4 +1,4 @@
-import {  createAction, props } from "@ngrx/store";
+import { createAction, props } from "@ngrx/store";
 import { Ingredient } from "src/app/shared/ingredient.model";
 
 export const addIngredient = createAction(
@@ -13,12 +13,11 @@ export const addIngredients = createAction(
 
 export const updateIngredient = createAction(
     '[Shopping] UpdateIngredient',
-    props<{index: number, ingredient: Ingredient}>()
+    props<{ ingredient: Ingredient }>()
 );
 
 export const removeIngredient = createAction(
     '[Shopping] RemoveIngredient',
-    props<{index: number}>()
 );
 
 export const startEdit = createAction(

@@ -34,7 +34,9 @@
                             type="submit"
                             [disabled]="!f.valid"
                             >{{ editMode ? 'Update' : 'Add' }}</button>
-                    <button class="btn btn-danger btn-space" type="button" (click)="onDeleteItem()" [disabled]="itemIndex < 0 || !f.valid">Delete</button>
+                    <button class="btn btn-danger btn-space" type="button" (click)="onDeleteItem()" 
+                    [disabled]="!f.valid"
+                    >Delete</button>
                     <button class="btn btn-primary" type="button" (click)="onClearInputs()">Clear</button>
                 </div>
             </div>
