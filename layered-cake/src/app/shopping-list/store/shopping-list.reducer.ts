@@ -40,8 +40,8 @@ export const shoppingListReducer = createReducer(
         return {
             ...state,
             ingredients: updatedIngredients,
-            itemIndex: -1,
-            editingIngredient: null
+            itemIndex: state.itemIndex,
+            editingIngredient: { ...updatedIngredients[state.itemIndex] }
         };
     }),
     on(removeIngredient, (state, action) => ({
