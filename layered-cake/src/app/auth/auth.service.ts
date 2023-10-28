@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { AuthResponseData } from "../shared/authentication.models";
 import { catchError, tap } from "rxjs/operators";
-import { BehaviorSubject, throwError } from "rxjs";
+import { throwError } from "rxjs";
 import { User } from "../shared/authentication.models";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
@@ -15,7 +15,6 @@ export class AuthenticationSevice {
     constructor(private https: HttpClient, private router: Router, private store: Store<fromApp.AppState>) {}
     apiSignUp = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey;
     apiSignIn = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseAPIKey;
-    user = new BehaviorSubject<User>(null);
     private tokenExpirationTimer: any;
 
     signUp(email: string, password: string) {
@@ -57,7 +56,6 @@ export class AuthenticationSevice {
     }
 
     signOut() {
-        // this.user.next(null);
         this.store.dispatch(logout());
         localStorage.removeItem('userData');
         this.router.navigate(['/auth']);
@@ -86,7 +84,6 @@ export class AuthenticationSevice {
         );
 
         if (loadedUser.token) {
-            // this.user.next(loadedUser);
             this.store.dispatch(login({
                 email: loadedUser.email,
                 userId: loadedUser.id,
@@ -113,7 +110,6 @@ export class AuthenticationSevice {
         ) {
         const expireDate = new Date(new Date().getTime() + expiresIn * 1000);
         const user = new User(email, userId, token, expireDate);
-        // this.user.next(user);
         this.store.dispatch(login({email: email, userId: userId, token: token,expireDate: expireDate}))
         this.autoSignOut(expiresIn * 1000);
         localStorage.setItem('userData', JSON.stringify(user));
