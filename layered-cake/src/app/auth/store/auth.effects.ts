@@ -1,16 +1,18 @@
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 // import * as AuthActions from './auth.actions'
 import { startLogin, login, loginFail } from './auth.actions'
-import { catchError, map, switchMap  } from 'rxjs/operators';
+import { catchError, map, switchMap, tap  } from 'rxjs/operators';
 import { AuthResponseData } from 'src/app/shared/authentication.models';
 import { HttpClient } from '@angular/common/http';
 import { environment } from "src/environments/environment";
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs'
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthEffects {
-    constructor(private https: HttpClient,private actions$: Actions) {}
+    constructor(private https: HttpClient, private actions$: Actions,
+                private router: Router) {}
     apiSignIn = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseAPIKey;
 
     authLogin = createEffect(() =>
@@ -72,5 +74,14 @@ export class AuthEffects {
           );
       })
     ));
-    
+
+    authSuccess = createEffect(() => 
+      this.actions$.pipe(
+        ofType(login),
+        tap(() => {
+          this.router.navigate(['/']);
+        }),   
+      ),
+      { dispatch : false }
+    )
 }
