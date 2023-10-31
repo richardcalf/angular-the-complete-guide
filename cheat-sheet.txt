@@ -261,3 +261,31 @@ As mentioned, you'll find multiple code snapshot attachments on various lectures
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+-----------------------section 26 vid 409------------------------------
+-----------------------------------------------------------------------
+
+
+Important: Avoid @Effect
+In this section, we create NgRx effects via the @Effect decorator.
+
+Whilst this works in older versions (and might therefore still be encountered in many Angular projects), you should now create effects via the createEffect() function instead.
+
+Instead of this code:
+
+@Effect
+authLogin = this.actions$.pipe(...)
+(as I'll write it in the next lecture)
+
+You should write this code:
+
+authLogin = createEffect(() => this.actions$.pipe(...));
+createEffect must be imported from @ngrx/effects
+
+import { createEffect } from '@ngrx/effect';
+Also see: https://ngrx.io/guide/migration/v15#removal-of-effect
+
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
