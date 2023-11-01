@@ -8,7 +8,7 @@ import { AlertComponent } from "../shared/alert/alert.component";
 import { PlaceHolderDirective } from "../shared/placeholder/placeholder.directive";
 import { Store } from "@ngrx/store";
 import * as fromApp from '../store/app.reducer';
-import { login, startLogin } from './store/auth.actions'
+import { authenticateSuccess, startLogin } from './store/auth.actions'
 
 @Component({
     selector: 'app-auth',

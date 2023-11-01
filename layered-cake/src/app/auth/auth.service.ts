@@ -8,7 +8,7 @@ import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
 import { Store } from '@ngrx/store'
 import * as fromApp from '../store/app.reducer'
-import { login, logout } from "./store/auth.actions";
+import { authenticateSuccess, logout } from "./store/auth.actions";
 
 @Injectable({providedIn: 'root'})
 export class AuthenticationSevice {
@@ -84,7 +84,7 @@ export class AuthenticationSevice {
         );
 
         if (loadedUser.token) {
-            this.store.dispatch(login({
+            this.store.dispatch(authenticateSuccess({
                 email: loadedUser.email,
                 userId: loadedUser.id,
                 token: loadedUser.token,
@@ -110,7 +110,7 @@ export class AuthenticationSevice {
         ) {
         const expireDate = new Date(new Date().getTime() + expiresIn * 1000);
         const user = new User(email, userId, token, expireDate);
-        this.store.dispatch(login({email: email, userId: userId, token: token,expireDate: expireDate}))
+        this.store.dispatch(authenticateSuccess({email: email, userId: userId, token: token,expireDate: expireDate}))
         this.autoSignOut(expiresIn * 1000);
         localStorage.setItem('userData', JSON.stringify(user));
     }

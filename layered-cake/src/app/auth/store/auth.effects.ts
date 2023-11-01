@@ -1,6 +1,5 @@
 import { Actions, ofType, createEffect } from '@ngrx/effects';
-// import * as AuthActions from './auth.actions'
-import { startLogin, login, loginFail } from './auth.actions'
+import { startLogin, authenticateSuccess, authenticateFail, signUpStart } from './auth.actions'
 import { catchError, map, switchMap, tap  } from 'rxjs/operators';
 import { AuthResponseData } from 'src/app/shared/authentication.models';
 import { HttpClient } from '@angular/common/http';
@@ -14,6 +13,11 @@ export class AuthEffects {
     constructor(private https: HttpClient, private actions$: Actions,
                 private router: Router) {}
     apiSignIn = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseAPIKey;
+
+    authSignup = createEffect(() => 
+    this.actions$.pipe(
+      ofType(signUpStart),
+    ));
 
     authLogin = createEffect(() =>
     this.actions$.pipe(
@@ -33,7 +37,7 @@ export class AuthEffects {
               const expirationDate = new Date(
                 new Date().getTime() + +resData.expiresIn * 1000
               );
-              return login({
+              return authenticateSuccess({
                 email: resData.email,
                 userId: resData.localId,
                 token: resData.idToken,
@@ -44,7 +48,7 @@ export class AuthEffects {
               let errorMessage = 'An unknown error occurred!';
               if (!errorRes.error || !errorRes.error.error) {
                 return of(
-                   loginFail({error: errorMessage})
+                  authenticateFail({error: errorMessage})
                 );
               }
               switch (errorRes.error.error.message) {
@@ -68,7 +72,7 @@ export class AuthEffects {
                         break;
               }
               return of(
-                loginFail({error: errorMessage})
+                authenticateFail({error: errorMessage})
               );
             })
           );
@@ -77,7 +81,7 @@ export class AuthEffects {
 
     authSuccess = createEffect(() => 
       this.actions$.pipe(
-        ofType(login),
+        ofType(authenticateSuccess),
         tap(() => {
           this.router.navigate(['/']);
         }),   
