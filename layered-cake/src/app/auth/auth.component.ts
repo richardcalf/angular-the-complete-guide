@@ -8,7 +8,7 @@ import { AlertComponent } from "../shared/alert/alert.component";
 import { PlaceHolderDirective } from "../shared/placeholder/placeholder.directive";
 import { Store } from "@ngrx/store";
 import * as fromApp from '../store/app.reducer';
-import { authenticateSuccess, startLogin } from './store/auth.actions'
+import { authenticateSuccess, startLogin,signUpStart } from './store/auth.actions'
 
 @Component({
     selector: 'app-auth',
@@ -44,34 +44,14 @@ export class AuthComponent implements OnInit, OnDestroy {
         }
         const email = form.value.email;
         const password = form.value.password;
-        let authObs: Observable<AuthResponseData>;
-
-        this.isLoading = true;
+                
         if(this.isLoginMode) {
-            // authObs = this.authService.signIn(email, password);
             this.store.dispatch(startLogin({email: email, password: password}))
-
         } else {
-            authObs = this.authService.signUp(email, password);
+            this.store.dispatch(signUpStart({email: email, password: password}))
         }
-
         this.store.select('auth').subscribe(authState => {
-
         });
-
-        // authObs.subscribe(
-        //     response => {
-        //         console.log( this.isLoginMode ? 'Logging In' : 'Signing Up' )
-        //         console.log(response);
-        //         this.isLoading = false;
-        //         this.router.navigate(['/recipes']);
-        //     }, 
-        //     error => {
-        //         console.log(error);
-        //         this.error = error;
-        //         this.showErrorAlert(error);
-        //         this.isLoading = false;
-        //     });
         form.reset();
     }
 

@@ -13,39 +13,22 @@ export class AuthEffects {
     constructor(private https: HttpClient, private actions$: Actions,
                 private router: Router) {}
     apiSignIn = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseAPIKey;
+    apiSignUp = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey;
 
-    authSignup = createEffect(() => 
-    this.actions$.pipe(
-      ofType(signUpStart),
-    ));
+    readonly handleAuthentication = (expiresIn: number, email: string, userId: string, token: string) => {
+      const expirationDate = new Date(
+        new Date().getTime() + expiresIn * 1000
+      );
+      return authenticateSuccess({
+        email: email,
+        userId: userId,
+        token: token,
+        expireDate: expirationDate,
+      });
+    };
 
-    authLogin = createEffect(() =>
-    this.actions$.pipe(
-      ofType(startLogin),
-      switchMap((authData: {email: string, password: string}) => {
-        return this.https
-          .post<AuthResponseData>(
-            this.apiSignIn,
-            {
-              email: authData.email,
-              password: authData.password,
-              returnSecureToken: true,
-            }
-          )
-          .pipe(
-            map((resData) => {
-              const expirationDate = new Date(
-                new Date().getTime() + +resData.expiresIn * 1000
-              );
-              return authenticateSuccess({
-                email: resData.email,
-                userId: resData.localId,
-                token: resData.idToken,
-                expireDate: expirationDate,
-              });
-            }),
-            catchError((errorRes) => {
-              let errorMessage = 'An unknown error occurred!';
+    readonly handleError = (errorRes: any) => {
+      let errorMessage = 'An unknown error occurred!';
               if (!errorRes.error || !errorRes.error.error) {
                 return of(
                   authenticateFail({error: errorMessage})
@@ -72,8 +55,51 @@ export class AuthEffects {
                         break;
               }
               return of(
-                authenticateFail({error: errorMessage})
-              );
+                authenticateFail({error: errorMessage}));
+    };
+
+    authSignup = createEffect(() => 
+    this.actions$.pipe(
+      ofType(signUpStart),
+      switchMap((signUpAction: {email: string, password: string}) => {
+        return this.https
+         .post<AuthResponseData>(
+          this.apiSignUp,
+          { 
+            email: signUpAction.email,
+            password: signUpAction.password,
+            returnSecureToken: true
+          })
+          .pipe(
+            map((resData) => {
+              return this.handleAuthentication(+resData.expiresIn,resData.email,resData.localId,resData.idToken);
+            }),
+            catchError((errorRes) => {
+              return this.handleError(errorRes)
+            })
+          );
+       })
+    ));
+
+    authLogin = createEffect(() =>
+    this.actions$.pipe(
+      ofType(startLogin),
+      switchMap((authData: {email: string, password: string}) => {
+        return this.https
+          .post<AuthResponseData>(
+            this.apiSignIn,
+            {
+              email: authData.email,
+              password: authData.password,
+              returnSecureToken: true,
+            }
+          )
+          .pipe(
+            map((resData) => {
+              return this.handleAuthentication(+resData.expiresIn,resData.email,resData.localId,resData.idToken);
+            }),
+            catchError((errorRes) => {
+              return this.handleError(errorRes);
             })
           );
       })
