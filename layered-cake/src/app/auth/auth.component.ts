@@ -1,14 +1,11 @@
 import { Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
-import { AuthenticationSevice } from "./auth.service";
-import { Observable, Subscription } from "rxjs";
-import { AuthResponseData } from "../shared/authentication.models";
-import { Router } from "@angular/router";
+import { Subscription } from "rxjs";
 import { AlertComponent } from "../shared/alert/alert.component";
 import { PlaceHolderDirective } from "../shared/placeholder/placeholder.directive";
 import { Store } from "@ngrx/store";
 import * as fromApp from '../store/app.reducer';
-import { authenticateSuccess, startLogin,signUpStart,handleError } from './store/auth.actions'
+import { startLogin,signUpStart,handleError } from './store/auth.actions'
 
 @Component({
     selector: 'app-auth',
@@ -16,7 +13,7 @@ import { authenticateSuccess, startLogin,signUpStart,handleError } from './store
     styleUrls: ['../app.component.css']
 })
 export class AuthComponent implements OnInit, OnDestroy {
-    constructor(private authService:AuthenticationSevice, private router: Router, private componentFactoryResolver: ComponentFactoryResolver,
+    constructor(private componentFactoryResolver: ComponentFactoryResolver,
                 private store: Store<fromApp.AppState>) {}
     ngOnInit(): void {
         this.storeSub = this.store.select('auth').subscribe(authState => {
