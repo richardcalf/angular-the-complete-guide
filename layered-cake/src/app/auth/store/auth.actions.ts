@@ -33,3 +33,7 @@ export const signUpStart = createAction(
 export const handleError = createAction(
     '[Auth] Handle Error'
 )
+
+export const autoLogin = createAction(
+    '[Auth] Auto Login'
+)
