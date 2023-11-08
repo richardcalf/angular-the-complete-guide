@@ -3,6 +3,9 @@ import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Params } from 'express-serve-static-core';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../../store/app.reducer';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -10,7 +13,13 @@ import { Params } from 'express-serve-static-core';
   styleUrls: ['./recipe-detail.component.css','../../app.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
-  constructor(private recipeService: RecipeService, private route: ActivatedRoute, private router: Router) {}
+  constructor(
+              private recipeService: RecipeService, 
+              private route: ActivatedRoute, 
+              private router: Router,
+              private store: Store<fromApp.AppState>
+
+              ) {}
 
   recipe: Recipe;
   index: number;
@@ -23,7 +32,16 @@ export class RecipeDetailComponent implements OnInit {
     this.route.params.subscribe(
       (p: Params) => {
         this.index = +p['id'];
-        this.recipe = this.recipeService.getRecipe(this.index);
+        // this.recipe = this.recipeService.getRecipe(this.index);
+        this.store.select('recipes').pipe(map(recipesState => {
+          return recipesState.recipes.find((recipe, index) => {
+            return index === this.index;
+          });
+        })
+        )
+        .subscribe(recipe => {
+          this.recipe = recipe;
+        })
       }
     );
   }
