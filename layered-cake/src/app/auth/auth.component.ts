@@ -8,7 +8,7 @@ import { AlertComponent } from "../shared/alert/alert.component";
 import { PlaceHolderDirective } from "../shared/placeholder/placeholder.directive";
 import { Store } from "@ngrx/store";
 import * as fromApp from '../store/app.reducer';
-import { authenticateSuccess, startLogin,signUpStart } from './store/auth.actions'
+import { authenticateSuccess, startLogin,signUpStart,handleError } from './store/auth.actions'
 
 @Component({
     selector: 'app-auth',
@@ -19,7 +19,7 @@ export class AuthComponent implements OnInit, OnDestroy {
     constructor(private authService:AuthenticationSevice, private router: Router, private componentFactoryResolver: ComponentFactoryResolver,
                 private store: Store<fromApp.AppState>) {}
     ngOnInit(): void {
-        this.store.select('auth').subscribe(authState => {
+        this.storeSub = this.store.select('auth').subscribe(authState => {
             this.isLoading = authState.loading;
             this.error = authState.authError;
             if(this.error) {
@@ -33,6 +33,7 @@ export class AuthComponent implements OnInit, OnDestroy {
     error: string = null;
     @ViewChild(PlaceHolderDirective) alertHost: PlaceHolderDirective;
     private closeSub: Subscription;
+    private storeSub: Subscription;
 
     onSwitchMode() {
         this.isLoginMode = !this.isLoginMode;
@@ -56,7 +57,7 @@ export class AuthComponent implements OnInit, OnDestroy {
     }
 
     onCloseErrorModal() {
-        this.error = null;
+        this.store.dispatch(handleError());
     }
 
     showErrorAlert(message: string) {
@@ -75,6 +76,9 @@ export class AuthComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         if(this.closeSub) {
             this.closeSub.unsubscribe();
+        }
+        if(this.storeSub) {
+            this.storeSub.unsubscribe();
         }
     }
 }

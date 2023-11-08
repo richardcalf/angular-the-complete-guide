@@ -58,7 +58,7 @@ export class AuthenticationSevice {
     signOut() {
         this.store.dispatch(logout());
         localStorage.removeItem('userData');
-        this.router.navigate(['/auth']);
+        // this.router.navigate(['/auth']);
         if(this.tokenExpirationTimer) {
             clearTimeout(this.tokenExpirationTimer);
         }

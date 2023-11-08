@@ -29,3 +29,7 @@ export const signUpStart = createAction(
     props<{email: string;
            password: string}>()
 )
+
+export const handleError = createAction(
+    '[Auth] Handle Error'
+)

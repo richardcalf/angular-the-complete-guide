@@ -1,5 +1,5 @@
 import { Actions, ofType, createEffect } from '@ngrx/effects';
-import { startLogin, authenticateSuccess, authenticateFail, signUpStart } from './auth.actions'
+import { startLogin, authenticateSuccess, authenticateFail, signUpStart, logout } from './auth.actions'
 import { catchError, map, switchMap, tap  } from 'rxjs/operators';
 import { AuthResponseData } from 'src/app/shared/authentication.models';
 import { HttpClient } from '@angular/common/http';
@@ -105,9 +105,9 @@ export class AuthEffects {
       })
     ));
 
-    authSuccess = createEffect(() => 
+    authRedirect = createEffect(() => 
       this.actions$.pipe(
-        ofType(authenticateSuccess),
+        ofType(authenticateSuccess, logout),
         tap(() => {
           this.router.navigate(['/']);
         }),   
