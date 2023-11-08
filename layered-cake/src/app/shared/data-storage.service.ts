@@ -3,10 +3,17 @@ import { HttpClient } from "@angular/common/http";
 import { RecipeService } from "../recipes/recipe.service";
 import { Recipe } from "../recipes/recipe.model";
 import { map, tap } from "rxjs/operators";
+import { Store } from "@ngrx/store";
+import * as fromApp from "../store/app.reducer";
+import { setRecipes } from '../recipes/store/recipe.actions'
+
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
-    constructor(private https: HttpClient, private recipeService: RecipeService) {}
+    constructor(private https: HttpClient, 
+         private recipeService: RecipeService,
+         private store: Store<fromApp.AppState>
+        ) {}
     apiEndpoint = 'https://ng-layered-rc-default-rtdb.asia-southeast1.firebasedatabase.app/recipes.json';
 
     storeRecipes() {
@@ -25,7 +32,8 @@ export class DataStorageService {
             })
         }),
         tap(recipes => {
-            this.recipeService.setRecipes(recipes);
+            // this.recipeService.setRecipes(recipes);
+            this.store.dispatch(setRecipes({recipes: recipes}));
         })
         )
     }
