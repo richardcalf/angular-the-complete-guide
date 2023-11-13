@@ -5,3 +5,7 @@ export const setRecipes = createAction(
     '[Recipes] Set Recipes',
     props<{recipes: Recipe[]}>()
 )
+
+export const getRecipes = createAction(
+    '[Recipes] Get Recipes'
+)
