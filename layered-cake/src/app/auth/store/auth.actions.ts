@@ -12,6 +12,7 @@ export const authenticateSuccess = createAction(
         userId: string;
         token: string;
         expireDate: Date;
+        redirect: boolean;
     }>()
 )
 

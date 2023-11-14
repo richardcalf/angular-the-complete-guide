@@ -6,6 +6,7 @@ export interface AuthResponseData {
     expiresIn: string
     localId: string
     registered?: string
+    redirect: boolean
 }
 
 export class User {
