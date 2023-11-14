@@ -1,4 +1,4 @@
-import { Actions, ofType, createEffect, EffectConfig } from '@ngrx/effects';
+import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { getRecipes, setRecipes, storeRecipes } from './recipe.actions';
 import { switchMap, map, withLatestFrom } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
@@ -6,7 +6,6 @@ import { Recipe } from "../recipe.model";
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
-import { Action } from 'rxjs/internal/scheduler/Action';
 import { Observable } from 'rxjs';
 
 @Injectable()
