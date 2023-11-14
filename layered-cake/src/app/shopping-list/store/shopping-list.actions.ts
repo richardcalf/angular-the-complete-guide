@@ -26,5 +26,5 @@ export const startEdit = createAction(
 );
 
 export const stopEdit = createAction(
-    '[Shopping] StopEdit',
+    '[Shopping] StopEdit'
 );

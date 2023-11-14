@@ -24,3 +24,7 @@ export const deleteRecipe = createAction(
     '[Recipe] Delete Recipe',
     props<{index: number}>()
 )
+
+export const storeRecipes = createAction(
+    '[Recipes] Store Recipes'
+)
