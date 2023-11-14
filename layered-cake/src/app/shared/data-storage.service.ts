@@ -32,7 +32,6 @@ export class DataStorageService {
             })
         }),
         tap(recipes => {
-            // this.recipeService.setRecipes(recipes);
             this.store.dispatch(setRecipes({recipes: recipes}));
         })
         )

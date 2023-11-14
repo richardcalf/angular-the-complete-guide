@@ -6,6 +6,7 @@ import { Params } from 'express-serve-static-core';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
 import { map, switchMap } from 'rxjs/operators';
+import { deleteRecipe } from '../store/recipe.actions'
 
 @Component({
   selector: 'app-recipe-detail',
@@ -63,10 +64,8 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onDeleteRecipe() {
-    // if(confirm("Delete "+this.recipe.name+"?")) {
-      this.recipeService.removeRecipe(this.index);
+      this.store.dispatch(deleteRecipe({ index: this.index }));
       this.router.navigate(['../']);
-    // }
   }
 
   getClassOpen() {

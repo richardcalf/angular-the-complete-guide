@@ -36,4 +36,4 @@ import { RecipeEffects } from './recipes/store/recipe.effects';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

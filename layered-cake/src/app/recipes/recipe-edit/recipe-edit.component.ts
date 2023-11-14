@@ -6,6 +6,7 @@ import { Recipe } from '../recipe.model';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
 import { map } from 'rxjs/operators';
+import { updateRecipe, addRecipe  } from '../store/recipe.actions'
 
 @Component({
   selector: 'app-recipe-edit',
@@ -40,9 +41,9 @@ export class RecipeEditComponent implements OnInit {
     //   this.htmlForm.value['imagePath'],
     //   this.htmlForm.value['ingredients']);
     if (this.editMode) {
-      this.recipeService.updateRecipe(this.id, this.htmlForm.value)
+      this.store.dispatch(updateRecipe({ index: this.id, recipe: this.htmlForm.value}))
     } else {
-      this.recipeService.addRecipe(this.htmlForm.value);
+      this.store.dispatch(addRecipe({recipe: this.htmlForm.value}))
     }
     this.router.navigate(['../'], {relativeTo: this.route});
   }
@@ -66,7 +67,6 @@ export class RecipeEditComponent implements OnInit {
     let recipeIngredients = new FormArray([]);
 
     if(this.editMode) {
-      // const recipe = this.recipeService.getRecipe(this.id);
       this.store.select('recipes').pipe(map(recipeState => {
         return recipeState.recipes.find((recipe, index) => {
           return index === this.id;
@@ -88,9 +88,7 @@ export class RecipeEditComponent implements OnInit {
           );
         }
       }
-
       })
-      
     }
 
     this.htmlForm = new FormGroup({

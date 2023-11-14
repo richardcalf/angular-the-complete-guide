@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { Recipe } from "../recipe.model";
-import { setRecipes } from './recipe.actions';
+import { setRecipes, addRecipe, updateRecipe, deleteRecipe } from './recipe.actions';
 
 export interface State {
     recipes: Recipe[];
@@ -15,5 +15,29 @@ export const recipeReducer = createReducer(
     on(setRecipes, (state, action) => ({
         ...state,
         recipes: [...action.recipes]
+    })),
+    on(addRecipe, (state, action) => ({
+        ...state,
+        recipes: [...state.recipes, action.recipe]
+    })),
+    on(updateRecipe, (state, action) => {
+        const updatedRecipe = {  
+            ...state.recipes[action.index],
+            ...action.recipe
+         };
+
+         const updatedRecipes = [...state.recipes];
+         updatedRecipes[action.index] = updatedRecipe;
+
+         return {
+            ...state,
+            recipes: updatedRecipes
+         }
+    }),
+    on(deleteRecipe, (state, action) => ({
+        ...state,
+        recipes: state.recipes.filter( (recipe, index) => {
+            return index !== action.index;
+        })
     }))
 )
