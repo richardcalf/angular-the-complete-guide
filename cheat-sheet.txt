@@ -288,6 +288,29 @@ Running a SSR / Universal Project with Angular 17+
 If you are using Angular 17, running a SSR-enabled project also is easier than doing so with Angular 16 or lower.
 
 All you have to do with Angular 17, is run ng serve. It'll automatically use SSR if you enabled it via ng add @angular/ssr or ng new <project-name> --ssr.
+-----------------------------------------------------------------------
+-----------------------section 26 vid 409------------------------------
+-----------------------------------------------------------------------
+
+
+Important: Avoid @Effect
+In this section, we create NgRx effects via the @Effect decorator.
+
+Whilst this works in older versions (and might therefore still be encountered in many Angular projects), you should now create effects via the createEffect() function instead.
+
+Instead of this code:
+
+@Effect
+authLogin = this.actions$.pipe(...)
+(as I'll write it in the next lecture)
+
+You should write this code:
+
+authLogin = createEffect(() => this.actions$.pipe(...));
+createEffect must be imported from @ngrx/effects
+
+import { createEffect } from '@ngrx/effect';
+Also see: https://ngrx.io/guide/migration/v15#removal-of-effect
 
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
