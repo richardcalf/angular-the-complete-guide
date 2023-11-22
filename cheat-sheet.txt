@@ -331,6 +331,10 @@ ng build --configuration production
 then
 
 npm install -g http-server
+
+go into the dist folder and browse to browser and run the http server..
+
+http-server -p 8081
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
